@@ -1,18 +1,14 @@
 package com.stakroute.neo4j.model;
 
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Property;
-import org.neo4j.ogm.annotation.Relationship;
-import org.springframework.data.annotation.Id;
+import org.neo4j.ogm.annotation.*;
 
 import javax.annotation.Generated;
 
 @NodeEntity
 public class Node {
 
-    @Id @GeneratedValue
-    private int id;
+    @Id
+    private long id;
 
     @Property
     private String name;
@@ -20,11 +16,11 @@ public class Node {
     @Property
     private String parent;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

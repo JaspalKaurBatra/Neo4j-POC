@@ -24,15 +24,20 @@ public class NodeController {
         return nodeService.save(node);
     }
 
-    @DeleteMapping("/delete")
-    public Node delete(@RequestParam("id") int id){
+    @DeleteMapping("/delete/{id}")
+    public Node delete(@PathVariable("id") long id){
         return nodeService.delete(id);
     }
 
     @PutMapping("/update")
-    public Node update(@RequestParam("id") int id,@RequestParam("name") String name,@RequestParam("parent") String parent)
+    public Node update(@RequestBody Node node)
+    {
+        return nodeService.update(node);
+    }
+    /*@PutMapping("/update")
+    public Node update(@RequestParam("id") long id,@RequestParam("name") String name,@RequestParam("parent") String parent)
     {
         return nodeService.update(id, name, parent);
-    }
+    }*/
 
 }

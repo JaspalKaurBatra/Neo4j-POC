@@ -6,34 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-//import org.springframework.stereotype.Service;
-//
-//@Service
-public class NodeService implements Service{
+import org.springframework.stereotype.Service;
+
+@Service
+public class NodeService{
 
     @Autowired
     NodeRepository nodeRepository;
 
-    @Override
+//    @Override
     public List<Node> getAll() {
         return nodeRepository.getAllNodes();
     }
 
-    @Override
+//    @Override
     public Node save(Node node) {
-        int id = node.getId();
+        long id = node.getId();
         String name = node.getName();
         String parent = node.getParent();
         return nodeRepository.createNode(id, name, parent);
     }
 
-    @Override
-    public Node delete(int id) {
+//    @Override
+    public Node delete(long id) {
         return nodeRepository.deleteNode(id);
-    }
+    }       //but I am not returning the deleted node
 
-    @Override
-    public Node update(int id, String name, String parent) {
+//    @Override
+    public Node update(Node node) {
+        long id = node.getId();
+        String name = node.getName();
+        String parent = node.getParent();
         return nodeRepository.updateNode(id, name, parent);
     }
 }

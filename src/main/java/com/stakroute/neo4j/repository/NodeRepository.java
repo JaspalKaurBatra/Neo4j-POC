@@ -8,22 +8,27 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface NodeRepository extends Neo4jRepository<Node,Integer> {
+//@Repository
+public interface NodeRepository extends Neo4jRepository<Node,Long> {
 
     @Query("MATCH (Node) RETURN Node")
     List<Node> getAllNodes();
 
-    @Query("MATCH (Node) RETURN Node")
-    Node getOneNode();
+    @Query("MATCH (n:Node) WHERE n.id={id} RETURN n")
+    Node getOneNode(@Param("id") long id);   //by id
+
+    @Query("MATCH (n:Node) WHERE n.name={name} RETURN n")
+    Node getOneNode(@Param("name") String name); //by name
 
     @Query("CREATE (n:Node) SET n.id={id},n.name={name},n.parent={parent} RETURN n")
-    Node createNode(int id,String name, String parent);
+    Node createNode(long id,String name, String parent);
 
-    @Query("MATCH (n) WHERE id(n)={id} DETACH DELETE n RETURN 'node deleted' ")
-    Node deleteNode(@Param("id") int id);  //by id
+    @Query("MATCH (n:Node) WHERE n.id={id} DETACH DELETE n RETURN n ")
+    Node deleteNode(@Param("id") long id);  //by id
 
-    @Query("MATCH (n) WHERE id(n)={id} SET n.name={name},n.parent={parent} RETURN n")
-    Node updateNode(@Param("id") int id,@Param("name") String name,@Param("parent") String parent);
+    @Query("MATCH (n:Node) WHERE n.id={id} DETACH DELETE n RETURN n ")
+    Node deleteNode(@Param("name") String name);  //by name
 
+    @Query("MATCH (n:Node) WHERE n.id={id} SET n.name={name},n.parent={parent} RETURN n")
+    Node updateNode(@Param("id") long id,@Param("name") String name,@Param("parent") String parent);
 }
