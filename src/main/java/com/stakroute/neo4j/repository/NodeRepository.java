@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//@Repository
+@Repository
 public interface NodeRepository extends Neo4jRepository<Node,Long> {
 
     @Query("MATCH (Node) RETURN Node")
@@ -26,7 +26,7 @@ public interface NodeRepository extends Neo4jRepository<Node,Long> {
     @Query("MATCH (n:Node) WHERE n.id={id} DETACH DELETE n RETURN n ")
     Node deleteNode(@Param("id") long id);  //by id
 
-    @Query("MATCH (n:Node) WHERE n.id={id} DETACH DELETE n RETURN n ")
+    @Query("MATCH (n:Node) WHERE n.name={name} DETACH DELETE n RETURN n ")
     Node deleteNode(@Param("name") String name);  //by name
 
     @Query("MATCH (n:Node) WHERE n.id={id} SET n.name={name},n.parent={parent} RETURN n")
