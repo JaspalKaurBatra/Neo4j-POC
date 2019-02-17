@@ -20,8 +20,8 @@ public interface NodeRepository extends Neo4jRepository<Node,Long> {
     @Query("MATCH (n:Node) WHERE n.name={name} RETURN n")
     Node getOneNode(@Param("name") String name); //by name
 
-    @Query("CREATE (n:Node) SET n.id={id},n.name={name},n.parent={parent} RETURN n")
-    Node createNode(long id,String name, String parent);
+    @Query("CREATE (n:Node) SET n.id={id},n.name={name},n.parentId={parentId} RETURN n")
+    Node createNode(long id,String name, long parentId);
 
     @Query("MATCH (n:Node) WHERE n.id={id} DETACH DELETE n RETURN n ")
     Node deleteNode(@Param("id") long id);  //by id
@@ -29,6 +29,6 @@ public interface NodeRepository extends Neo4jRepository<Node,Long> {
     @Query("MATCH (n:Node) WHERE n.name={name} DETACH DELETE n RETURN n ")
     Node deleteNode(@Param("name") String name);  //by name
 
-    @Query("MATCH (n:Node) WHERE n.id={id} SET n.name={name},n.parent={parent} RETURN n")
-    Node updateNode(@Param("id") long id,@Param("name") String name,@Param("parent") String parent);
+    @Query("MATCH (n:Node) WHERE n.id={id} SET n.name={name},n.parentId={parentId} RETURN n")
+    Node updateNode(@Param("id") long id,@Param("name") String name,@Param("parentId") long parentId);
 }

@@ -1,20 +1,24 @@
 package com.stakroute.neo4j.model;
-
 import org.neo4j.ogm.annotation.*;
 
-import javax.annotation.Generated;
+import java.util.ArrayList;
+import java.util.List;
 
 @NodeEntity
 public class Node {
 
     @Id
+    //@GeneratedValue
     private long id;
 
     @Property
     private String name;
 
     @Property
-    private String parent;
+    private long parentId;
+
+    @Relationship(type = "CHILD_OF")
+    private List<Parent> parent = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -32,13 +36,31 @@ public class Node {
         this.name = name;
     }
 
-    public String getParent() {
+    public long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
+    }
+
+    public List<Parent> getParent() {
         return parent;
     }
 
-    public void setParent(String parent) {
+    public void setParent(List<Parent> parent) {
         this.parent = parent;
     }
-
-
 }
+/*
+@NodeEntity
+public class Person {
+
+    @Id @GeneratedValue private Long id;
+    private String name;
+    private int born;
+
+    @Relationship(type = "ACTED_IN")
+    private List<Movie> movies = new ArrayList<>();
+}
+*/

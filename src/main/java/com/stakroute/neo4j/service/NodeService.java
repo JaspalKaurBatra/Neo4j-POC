@@ -30,8 +30,8 @@ public class NodeService implements CrudService{
     public Node save(Node node) {
         long id = node.getId();
         String name = node.getName();
-        String parent = node.getParent();
-        return nodeRepository.createNode(id, name, parent);
+        long parentId = node.getParentId();
+        return nodeRepository.createNode(id, name, parentId);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class NodeService implements CrudService{
     public Node update(Node node) {
         long id = node.getId();
         String name = node.getName();
-        String parent = node.getParent();
-        return nodeRepository.updateNode(id, name, parent);
+        long parentId = node.getParentId();
+        return nodeRepository.updateNode(id, name, parentId);
     }
 }
