@@ -7,22 +7,40 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 public interface ParentRepository extends Neo4jRepository<Parent,Long> {
 
-    Parent findByName(@Param("name") String name);
+    @Query("MATCH (Parent) RETURN Parent")
+    List<Parent> getAllNodes();
 
-    Collection<Parent> findByNameLike(@Param("name") String name);
+    @Query("MATCH (p:Parent) WHERE p.id={id} RETURN p")
+    Parent getOneParent(@Param("id") long id);   //by id
 
-    @Query("MATCH (p:Parent)<-[r:CHILD_OF]-(n:Node) RETURN p,r,n")
-    Collection<Parent> graph();
-    /*
+    @Query("MATCH (p:Parent) WHERE p.name={name} RETURN p")
+    Parent getOneParent(@Param("name") String name); //by name
+
+    @Query("CREATE (p:Parent) SET p.id={id},p.name={name} RETURN p")
+    Parent createParent(long id,String name);
+
+    @Query("MATCH (p:Parent) WHERE p.id={id} DETACH DELETE p RETURN p ")
+    Parent deleteParent(@Param("id") long id);  //by id
+
+    @Query("MATCH (p:Parent) WHERE p.name={name} DETACH DELETE p RETURN p ")
+    Parent deleteParent(@Param("name") String name);  //by name
+
+    @Query("MATCH (p:Parent) WHERE p.id={id} SET p.name={name} RETURN p")
+    Parent updateParent(@Param("id") long id,@Param("name") String name);
+
+}
+
+
+/*
     Movie findByTitle(@Param("title") String title);
 
     Collection<Movie> findByTitleLike(@Param("title") String title);
 
     @Query("MATCH (m:Movie)<-[r:ACTED_IN]-(a:Person) RETURN m,r,a LIMIT {limit}")
     Collection<Movie> graph(@Param("limit") int limit);
-    */
-}
+*/

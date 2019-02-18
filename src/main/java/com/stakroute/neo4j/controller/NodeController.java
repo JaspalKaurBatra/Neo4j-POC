@@ -5,10 +5,11 @@ import com.stakroute.neo4j.service.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/child")
 public class NodeController {
 
     @Autowired

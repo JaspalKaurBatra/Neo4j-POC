@@ -17,7 +17,7 @@ public class Node {
     @Property
     private long parentId;
 
-    @Relationship(type = "CHILD_OF")
+    @Relationship(type = "CHILD_OF", direction = Relationship.OUTGOING)
     private List<Parent> parent = new ArrayList<>();
 
     public long getId() {
@@ -51,6 +51,8 @@ public class Node {
     public void setParent(List<Parent> parent) {
         this.parent = parent;
     }
+
+
 }
 /*
 @NodeEntity

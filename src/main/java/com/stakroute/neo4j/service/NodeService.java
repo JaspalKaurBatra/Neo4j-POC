@@ -1,32 +1,36 @@
 package com.stakroute.neo4j.service;
 import com.stakroute.neo4j.model.Node;
+import com.stakroute.neo4j.model.Parent;
 import com.stakroute.neo4j.repository.NodeRepository;
+import com.stakroute.neo4j.repository.ParentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
+
+import java.util.*;
+
 import org.springframework.stereotype.Service;
 
 @Service
-public class NodeService implements CrudService{
+public class NodeService{
 
     @Autowired
     NodeRepository nodeRepository;
 
-    @Override
+    // @Override
     public List<Node> getAll() {
         return nodeRepository.getAllNodes();
     }
 
-    @Override
+    // @Override
     public Node getOneNode(long id) {
         return nodeRepository.getOneNode(id);
     }
 
-    @Override
+    // @Override
     public Node getOneNode(String name) {
         return nodeRepository.getOneNode(name);
     }
 
-    @Override
+    // @Override
     public Node save(Node node) {
         long id = node.getId();
         String name = node.getName();
@@ -34,21 +38,23 @@ public class NodeService implements CrudService{
         return nodeRepository.createNode(id, name, parentId);
     }
 
-    @Override
+    // @Override
     public Node delete(long id) {
         return nodeRepository.deleteNode(id);
     }       //but I am not returning the deleted node as I am not able to keep track of the same
 
-    @Override
+    // @Override
     public Node delete(String name) {
         return nodeRepository.deleteNode(name);
     }
 
-    @Override
+    // @Override
     public Node update(Node node) {
         long id = node.getId();
         String name = node.getName();
         long parentId = node.getParentId();
         return nodeRepository.updateNode(id, name, parentId);
     }
+
+
 }

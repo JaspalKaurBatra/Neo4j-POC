@@ -1,8 +1,11 @@
 package com.stakroute.neo4j.service;
 
 import com.stakroute.neo4j.model.Node;
+import com.stakroute.neo4j.model.Parent;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public interface CrudService {
 
@@ -19,5 +22,9 @@ public interface CrudService {
     public Node delete(String name);
 
     public Node update(Node node);
+
+    public Parent findByName(String name);
+
+    public Collection<Parent> graph();
 
 }

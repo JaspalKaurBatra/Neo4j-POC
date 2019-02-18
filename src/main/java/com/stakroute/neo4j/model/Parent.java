@@ -6,6 +6,7 @@ import java.util.List;
 
 @NodeEntity
 public class Parent {
+
     @Id
     //@GeneratedValue
     private long id;
@@ -14,7 +15,32 @@ public class Parent {
     private String name;
 
     @Relationship(type = "CHILD_OF", direction = Relationship.INCOMING)
-    private List<Relation> relation;
+    //private List<Relation> relation;
+    private Relation relation;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Relation getRelation() {
+        return relation;
+    }
+
+    public void setRelation(Relation relation) {
+        this.relation = relation;
+    }
 }
 
 /*
