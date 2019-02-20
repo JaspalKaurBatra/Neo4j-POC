@@ -1,5 +1,7 @@
 package com.stakroute.neo4j.controller;
 
+import com.stakroute.neo4j.model.Node;
+import com.stakroute.neo4j.model.Parent;
 import com.stakroute.neo4j.model.Relation;
 import com.stakroute.neo4j.service.RelationService;
 import org.springframework.beans.factory.annotation.Autowired;
