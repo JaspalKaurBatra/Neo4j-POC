@@ -29,6 +29,6 @@ public interface NodeRepository extends Neo4jRepository<Node,Long> {
     @Query("MATCH (n:Node) WHERE n.name={name} DETACH DELETE n RETURN n ")
     Node deleteNode(@Param("name") String name);  //by name
 
-    @Query("MATCH (n:Node) WHERE n.id={id} SET n.name={name},n.parentId={parentId} RETURN n")
+    @Query("MATCH (n:Node) WHERE n.id={id} SET n.name={name} SET n.parentId={parentId} RETURN n")
     Node updateNode(@Param("id") long id,@Param("name") String name,@Param("parentId") long parentId);
 }

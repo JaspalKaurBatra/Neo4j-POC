@@ -20,15 +20,28 @@ public class ParentController {
         return parentService.getAll();
     }
 
+    @GetMapping("/get/id/{id}")
+    public Parent getOneNode(@PathVariable("id") long id){
+        return parentService.getOneNode(id);
+    }
+
+    @GetMapping("/get/name/{name}")
+    public Parent getOneNode(@PathVariable("name") String name){
+        return parentService.getOneNode(name);
+    }
+
     @PostMapping("/save")
     public Parent save(@RequestBody Parent node){
         return parentService.save(node);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/id/{id}")
     public Parent delete(@PathVariable("id") long id){
         return parentService.delete(id);
     }
+
+    @DeleteMapping("/delete/name/{name}")
+    public Parent delete(@PathVariable("name") String name){ return parentService.delete(name); }
 
     @PutMapping("/update")
     public Parent update(@RequestBody Parent node)

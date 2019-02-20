@@ -34,13 +34,3 @@ public interface ParentRepository extends Neo4jRepository<Parent,Long> {
     Parent updateParent(@Param("id") long id,@Param("name") String name);
 
 }
-
-
-/*
-    Movie findByTitle(@Param("title") String title);
-
-    Collection<Movie> findByTitleLike(@Param("title") String title);
-
-    @Query("MATCH (m:Movie)<-[r:ACTED_IN]-(a:Person) RETURN m,r,a LIMIT {limit}")
-    Collection<Movie> graph(@Param("limit") int limit);
-*/

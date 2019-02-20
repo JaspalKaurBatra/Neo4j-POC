@@ -39,9 +39,7 @@ public class NodeService{
     }
 
     // @Override
-    public Node delete(long id) {
-        return nodeRepository.deleteNode(id);
-    }       //but I am not returning the deleted node as I am not able to keep track of the same
+    public Node delete(long id) { return nodeRepository.deleteNode(id); }
 
     // @Override
     public Node delete(String name) {

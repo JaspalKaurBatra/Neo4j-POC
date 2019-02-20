@@ -20,12 +20,12 @@ public class NodeController {
         return nodeService.getAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/id/{id}")
     public Node getOneNode(@PathVariable("id") long id){
         return nodeService.getOneNode(id);
     }
 
-    @GetMapping("/get/{name}")
+    @GetMapping("/get/name/{name}")
     public Node getOneNode(@PathVariable("name") String name){
         return nodeService.getOneNode(name);
     }
@@ -35,12 +35,12 @@ public class NodeController {
         return nodeService.save(node);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/id/{id}")
     public Node delete(@PathVariable("id") long id){
         return nodeService.delete(id);
     }
 
-    @DeleteMapping("/delete/{name}")
+    @DeleteMapping("/delete/name/{name}")
     public Node delete(@PathVariable("name") String name){
         return nodeService.delete(name);
     }

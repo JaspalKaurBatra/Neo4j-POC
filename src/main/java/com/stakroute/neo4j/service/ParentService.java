@@ -27,9 +27,23 @@ public class ParentService {
     }
 
     // @Override
+    public Parent getOneNode(long id) {
+        return parentRepository.getOneParent(id);
+    }
+
+    // @Override
+    public Parent getOneNode(String name) { return parentRepository.getOneParent(name); }
+
+
+    // @Override
     public Parent delete(long id) {
         return parentRepository.deleteParent(id);
-    }       //but I am not returning the deleted node as I am not able to keep track of the same
+    }
+
+    // @Override
+    public Parent delete(String name) {
+        return parentRepository.deleteParent(name);
+    }
 
 
     // @Override

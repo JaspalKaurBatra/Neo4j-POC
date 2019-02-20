@@ -7,8 +7,7 @@ import java.util.List;
 @NodeEntity
 public class Node {
 
-    @Id
-    //@GeneratedValue
+    @Id //@GeneratedValue
     private long id;
 
     @Property
@@ -24,34 +23,17 @@ public class Node {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public long getParentId() {
         return parentId;
     }
 
-    public void setParentId(long parentId) {
-        this.parentId = parentId;
-    }
-
     public List<Parent> getParent() {
         return parent;
     }
-
-    public void setParent(List<Parent> parent) {
-        this.parent = parent;
-    }
-
 
 }
 /*
